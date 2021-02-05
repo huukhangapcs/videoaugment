@@ -29,7 +29,7 @@ async def upload_video(file: UploadFile = File(...)):
     extension = file.filename.split(".")[-1] in ("mp4", "wav")
     if not extension:
         return "Video must in mp4 or wav format!"
-    process_video(file.filename)
-    return FileResponse("output.mp4", media_type="video/mp4")
+#     process_video(file.filename)
+    return FileResponse(file.filename, media_type="video/mp4")
 
     
