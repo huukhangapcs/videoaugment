@@ -11,7 +11,7 @@ async def main():
 def process_video(filename):
     cap = cv2.VideoCapture(filename)
     fourcc = cv2.VideoWriter_fourcc('m','p','4','v')
-    out = cv2.VideoWriter('output.mp4',fourcc, 20.0, (1280,720))
+    out = cv2.VideoWriter('output.mp4',fourcc, 20.0, (640,480))
     while cap.isOpened():
         ret, frame = cap.read()
         if ret:
