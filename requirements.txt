@@ -12,3 +12,4 @@ typing-extensions==3.7.4.3
 uvicorn==0.13.3
 opencv-python-headless==4.2.0.32
 aiofiles==0.6.0
+ffmpeg-python
