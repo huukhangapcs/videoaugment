@@ -1,3 +1,13 @@
+from fastapi import FastAPI, UploadFile, File, requests
+from fastapi.responses import FileResponse, RedirectResponse
+import cv2
+app = FastAPI()
+
+
+@app.get("/")
+async def main():
+    return {"Hello": "World!"}
+
 def process_video(file_name):
     # Read video file
     cap = cv2.VideoCapture(file_name)
@@ -32,3 +42,13 @@ def process_video(file_name):
     # Release resources
     cap.release()
     out.release()
+
+@app.post("/video_upload")
+async def upload_video(file: UploadFile = File(...)):
+    extension = file.filename.split(".")[-1] in ("mp4", "avi")
+    if not extension:
+        return "Video must in mp4 or wav format!"
+    process_video(file.filename)
+    return FileResponse("output.mp4", media_type="video/mp4")
+
+    
